@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { TextInput, PasswordInput, Button, Text, Title, SimpleGrid, Select, NumberInput, SegmentedControl } from '@mantine/core';
+import { TextInput, PasswordInput, Button, Text, Title, SimpleGrid, Select, NumberInput } from '@mantine/core';
 import {
   IconLock,
   IconMail,
@@ -15,7 +15,6 @@ import {
   IconBriefcase,
   IconDroplet,
   IconIdBadge,
-  IconAddressBook,
   IconCertificate,
 } from '@tabler/icons-react';
 import { motion, AnimatePresence } from 'framer-motion';

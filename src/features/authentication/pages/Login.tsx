@@ -143,8 +143,6 @@ const Login: React.FC = () => {
     dispatch(login({ usernameOrEmail, password }));
   };
 
-  const activeOpt = roleOptions.find((o) => o.role === selectedRole)!;
-
   return (
     <div
       style={{ background: '#080D1A' }}
