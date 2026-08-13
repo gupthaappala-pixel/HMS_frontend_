@@ -1,52 +1,159 @@
-# Getting Started with Create React App
+# 🏥 Hospital Management System (HMS) - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Mantine UI](https://img.shields.io/badge/Mantine_UI-8.3-339AF0?style=for-the-badge&logo=mantine&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.12-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-In the project directory, you can run:
+<p align="center">
+  <b>A modern, enterprise-grade digital healthcare platform unifying workflows for Doctors, Nurses, Patients, Pharmacists, and Hospital Administrators.</b>
+</p>
 
-### `npm start`
+[Key Features](#-key-features) •
+[Tech Stack](#-tech-stack) •
+[Architecture](#-project-architecture) •
+[Quick Start](#-getting-started) •
+[Backend Setup](#-backend-integration)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+</div>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## 🌟 Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The **HMS Frontend** provides a unified, responsive, and secure digital platform built with **React 19**, **TypeScript**, and **Mantine UI**. Designed for high performance and seamless user experience, it features role-based access control (RBAC), real-time WebSocket communication, interactive appointment scheduling, electronic medical records (EMR), pharmacy stock management, and AI-powered virtual assistance.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ✨ Key Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🔐 1. User Management & Security (RBAC)
+- **Multi-Role Portals:** Tailored user dashboards for `Admin`, `Doctor`, `Nurse`, `Patient`, `Pharmacist`, and `Lab Technician`.
+- **Authentication:** JWT-based stateless auth with token refresh, password recovery, and secure route guards.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 📅 2. Smart Appointment Scheduling
+- **Doctor Availability:** Time-slot management with interactive calendar views.
+- **Booking Flow:** Patient self-service booking, rescheduling, and status tracking (*Scheduled*, *Completed*, *Cancelled*).
 
-### `npm run eject`
+### 🩺 3. Electronic Medical Records (EMR)
+- Comprehensive patient medical history, diagnostic reports, treatment plans, and digital prescriptions.
+- Downloadable PDF & Excel report exports.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 💊 4. Pharmacy & Inventory Tracking
+- Real-time stock level monitoring with automated low-stock and expiry notifications.
+- Direct linkage between doctor prescriptions and pharmacy fulfillment orders.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🧪 5. Laboratory Management
+- Test order workflow, sample status tracking, and direct result uploads to patient records.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 🤖 6. AI Virtual Assistant & Real-Time Chat
+- AI-powered chatbot assistant for patient navigation and automated healthcare inquiries.
+- Real-time WebSocket (`STOMP`/`SockJS`) chat between patients and clinical staff.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 📊 7. Analytics & Executive Dashboards
+- Visual metrics for hospital revenue, patient throughput, and department performance.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠️ Tech Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Domain | Technologies |
+| :--- | :--- |
+| **Core Framework** | React 19, TypeScript, React Router v7 |
+| **UI Components** | Mantine UI v8, Tabler Icons, Framer Motion |
+| **Styling** | Tailwind CSS v3, Vanilla CSS Design System |
+| **State Management** | Redux Toolkit (`@reduxjs/toolkit`), React Redux |
+| **HTTP & API** | Axios, RESTful API Integration |
+| **Real-Time Messaging**| SockJS Client, STOMP.js |
+| **Testing** | React Testing Library, Jest |
 
+---
 
+## 📁 Project Architecture
 
+```text
+d:/HMS/Frontend/
+├── public/                # Static assets & HTML template
+├── src/
+│   ├── components/        # Shared global UI components & layouts
+│   ├── features/          # Feature-sliced domain modules
+│   │   ├── authentication/# Login, Register, Protected Routes
+│   │   ├── dashboard/     # Role-specific dashboards & widgets
+│   │   ├── appointment/   # Booking & scheduling logic
+│   │   └── promotion/     # Notifications & engagement cards
+│   ├── pages/             # Page route components
+│   ├── store/             # Redux Toolkit store & global slices
+│   ├── utils/             # Helper utilities & API interceptors
+│   ├── App.tsx            # Main application router & theme provider
+│   ├── index.tsx          # Application entry point with Redux Provider
+│   └── setupTests.ts      # Testing setup & polyfills
+├── package.json           # Scripts & dependency definitions
+└── tsconfig.json          # TypeScript compiler configuration
+```
 
-# To start the backend 
-PS D:\HMS\backend\hms> .\mvnw.cmd spring-boot:run      
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js**: `v18.x` or higher
+- **npm**: `v9.x` or higher
+
+### Installation & Run
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/lohith895/hms-frontend.git
+   cd hms-frontend
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm start
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view the application in your browser.
+
+4. **Run Unit Tests:**
+   ```bash
+   npm test -- --watchAll=false
+   ```
+
+5. **Build for Production:**
+   ```bash
+   npm run build
+   ```
+
+---
+
+## 🔌 Backend Integration
+
+The frontend seamlessly pairs with the **Spring Boot HMS Backend REST API**.
+
+To launch the backend server:
+
+```powershell
+# Navigate to the backend directory
+cd D:\HMS\Backend\HMS
+
+# Run the Spring Boot application
+.\mvnw.cmd spring-boot:run
+```
+
+- **Backend Base URL:** `http://localhost:8080`
+- **Database:** PostgreSQL / Supabase (Production) / H2 (Development & Testing)
+- **API Documentation:** Swagger UI accessible at `http://localhost:8080/swagger-ui.html`
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ for modern healthcare digital transformation.</sub>
+</div>
