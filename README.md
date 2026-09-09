@@ -7,6 +7,7 @@
 ![Mantine UI](https://img.shields.io/badge/Mantine_UI-8.3-339AF0?style=for-the-badge&logo=mantine&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-2.12-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-S3_%2F_CloudFront-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 <p align="center">
@@ -17,6 +18,7 @@
 [Tech Stack](#-tech-stack) •
 [Architecture](#-project-architecture) •
 [Quick Start](#-getting-started) •
+[AWS Cloud Deployment](#-aws-cloud-deployment) •
 [Backend Setup](#-backend-integration)
 
 </div>
@@ -70,6 +72,7 @@ The **HMS Frontend** provides a unified, responsive, and secure digital platform
 | **HTTP & API** | Axios, RESTful API Integration |
 | **Real-Time Messaging**| SockJS Client, STOMP.js |
 | **Testing** | React Testing Library, Jest |
+| **Cloud Hosting** | AWS S3 Static Hosting, Amazon CloudFront CDN |
 
 ---
 
@@ -130,6 +133,37 @@ d:/HMS/Frontend/
 5. **Build for Production:**
    ```bash
    npm run build
+   ```
+
+---
+
+## ☁️ AWS Cloud Deployment
+
+The **HMS Frontend** single-page app (SPA) is optimized for deployment on **AWS S3** and distributed globally via **Amazon CloudFront CDN**.
+
+### 1. Build Static Production Artifacts
+
+```bash
+npm run build
+```
+This generates optimized static files inside the `build/` directory.
+
+### 2. AWS S3 Bucket Configuration
+
+1. Create a new AWS S3 bucket (e.g., `hms-frontend-app`).
+2. Enable **Static Website Hosting** under Bucket Properties, setting `index.html` as the index document.
+3. Upload the build directory using AWS CLI:
+   ```bash
+   aws s3 sync build/ s3://hms-frontend-app --delete
+   ```
+
+### 3. Amazon CloudFront CDN Setup
+
+1. Create a CloudFront Distribution with the S3 bucket as the origin.
+2. Set **Custom Error Responses** for 403/404 HTTP status codes to redirect to `/index.html` with 200 OK (required for React Router single-page app routing).
+3. Invalidate CDN cache upon new deployment:
+   ```bash
+   aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"
    ```
 
 ---
