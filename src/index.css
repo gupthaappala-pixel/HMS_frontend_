@@ -4,45 +4,53 @@
 
 /* ═══════════════════════════════════════════════════════
    HMS Clean Healthcare Design System — Global CSS Tokens
-   Palette: Medical Blue/Teal × Neutral Gray × Minimal Accents
+   Palette: Medical Blue (#2563EB / #60A5FA) × Teal (#0F766E / #2DD4BF)
+   Light Theme (Default) + Soft Dark Theme (#0F172A / #1E293B)
    ═══════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   /* ── Light Clean Backgrounds (Primary Default) ── */
-  --bg-base:       #F8FAFC;   /* Very light gray/blue background */
+  --bg-base:       #F8FAFC;   /* Very light slate/blue background */
   --bg-surface:    #FFFFFF;   /* Clean white card surface */
   --bg-elevated:   #F1F5F9;   /* Subtly elevated element */
   --bg-border:     #E2E8F0;   /* Light border */
   --bg-hover:      #F1F5F9;   /* Subtle table row hover */
 
-  /* ── Primary — Medical Teal/Blue ── */
-  --primary-50:   #F0F9FF;
-  --primary-100:  #E0F2FE;
-  --primary-200:  #BAE6FD;
-  --primary-400:  #38BDF8;
-  --primary-500:  #0EA5E9;
-  --primary-600:  #0284C7;
-  --primary-700:  #0369A1;
-  --primary-glow: rgba(14, 165, 233, 0.15);
+  /* ── Primary — Medical Blue ── */
+  --primary-50:   #EFF6FF;
+  --primary-100:  #DBEAFE;
+  --primary-200:  #BFDBFE;
+  --primary-400:  #60A5FA;
+  --primary-500:  #3B82F6;
+  --primary-600:  #2563EB;
+  --primary-700:  #1D4ED8;
+  --primary-glow: rgba(37, 99, 235, 0.15);
+
+  /* ── Secondary — Medical Teal ── */
+  --secondary-50:   #F0FDFA;
+  --secondary-100:  #CCFBF1;
+  --secondary-500:  #14B8A6;
+  --secondary-600:  #0F766E;
+  --secondary-700:  #115E59;
 
   /* ── Status Colors ── */
-  --success-bg:   #ECFDF5;
-  --success-text: #065F46;
+  --success-bg:     #ECFDF5;
+  --success-text:   #065F46;
   --success-border: #A7F3D0;
 
-  --warning-bg:   #FEF3C7;
-  --warning-text: #92400E;
+  --warning-bg:     #FEF3C7;
+  --warning-text:   #92400E;
   --warning-border: #FDE68A;
 
-  --info-bg:      #EFF6FF;
-  --info-text:    #1E40AF;
-  --info-border:  #BFDBFE;
+  --info-bg:        #EFF6FF;
+  --info-text:      #1E40AF;
+  --info-border:    #BFDBFE;
 
-  --danger-bg:    #FEE2E2;
-  --danger-text:  #991B1B;
-  --danger-border:#FECACA;
+  --danger-bg:      #FEE2E2;
+  --danger-text:    #991B1B;
+  --danger-border:  #FECACA;
 
   /* ── Neutral Text ── */
   --text-primary:   #0F172A;   /* Slate 900 */
@@ -50,12 +58,77 @@
   --text-muted:     #64748B;   /* Slate 500 */
   --text-dimmed:    #94A3B8;   /* Slate 400 */
 
+  /* ── Sidebar & Header Light ── */
+  --sidebar-bg:     #FFFFFF;
+  --sidebar-border: #E2E8F0;
+  --sidebar-hover:  #F8FAFC;
+  --sidebar-active: #EFF6FF;
+  --header-bg:      #FFFFFF;
+  --header-border:  #E2E8F0;
+
   /* ── Shadows & Radius ── */
   --shadow-card:   0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
   --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
   --radius-sm:     6px;
   --radius-md:     10px;
   --radius-lg:     14px;
+}
+
+.dark {
+  /* ── Soft Dark Backgrounds ── */
+  --bg-base:       #0F172A;   /* Deep Slate Navy */
+  --bg-surface:    #1E293B;   /* Card Surface */
+  --bg-elevated:   #334155;   /* Elevated Element */
+  --bg-border:     #334155;   /* Dark Border */
+  --bg-hover:      #334155;   /* Hover */
+
+  /* ── Primary — Medical Blue (Soft/Bright for Dark) ── */
+  --primary-50:   #1E3A5F;
+  --primary-100:  #1E40AF;
+  --primary-200:  #1D4ED8;
+  --primary-400:  #93C5FD;
+  --primary-500:  #60A5FA;
+  --primary-600:  #3B82F6;
+  --primary-700:  #60A5FA;
+  --primary-glow: rgba(96, 165, 250, 0.2);
+
+  /* ── Secondary — Medical Teal (Dark) ── */
+  --secondary-50:   #134E4A;
+  --secondary-100:  #115E59;
+  --secondary-500:  #2DD4BF;
+  --secondary-600:  #5EEAD4;
+  --secondary-700:  #99F6E4;
+
+  /* ── Status Colors (Dark Mode Translucent) ── */
+  --success-bg:     rgba(74, 222, 128, 0.15);
+  --success-text:   #4ADE80;
+  --success-border: rgba(74, 222, 128, 0.3);
+
+  --warning-bg:     rgba(251, 191, 36, 0.15);
+  --warning-text:   #FBBF24;
+  --warning-border: rgba(251, 191, 36, 0.3);
+
+  --info-bg:        rgba(56, 189, 248, 0.15);
+  --info-text:      #38BDF8;
+  --info-border:    rgba(56, 189, 248, 0.3);
+
+  --danger-bg:      rgba(248, 113, 113, 0.15);
+  --danger-text:    #F87171;
+  --danger-border:  rgba(248, 113, 113, 0.3);
+
+  /* ── Neutral Text (Dark) ── */
+  --text-primary:   #F8FAFC;   /* Slate 50 */
+  --text-secondary: #CBD5E1;   /* Slate 300 */
+  --text-muted:     #94A3B8;   /* Slate 400 */
+  --text-dimmed:    #64748B;   /* Slate 500 */
+
+  /* ── Sidebar & Header Dark ── */
+  --sidebar-bg:     #111827;   /* Slate 900+ */
+  --sidebar-border: #1E293B;
+  --sidebar-hover:  #1E293B;
+  --sidebar-active: #1E3A5F;
+  --header-bg:      #111827;
+  --header-border:  #1E293B;
 }
 
 *,
@@ -77,12 +150,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* ── Custom Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg-base); }
-::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 8px; }
+::-webkit-scrollbar-thumb { background: #94A3B8; border-radius: 8px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary-600); }
 
 /* ── Standard Clean Card ── */
@@ -91,6 +165,7 @@ body {
   border: 1px solid var(--bg-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 /* ── Standard Clean Table ── */
@@ -101,7 +176,7 @@ body {
 }
 
 .hms-table th {
-  background-color: #F8FAFC;
+  background-color: var(--bg-base);
   color: var(--text-secondary);
   font-size: 0.75rem;
   font-weight: 600;

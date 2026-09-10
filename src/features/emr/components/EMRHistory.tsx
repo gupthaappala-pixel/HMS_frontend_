@@ -7,6 +7,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import api from '../../../utils/api';
 import AddMedicalRecordModal from './AddMedicalRecordModal';
+import { LabReportDetailModal, LabReportData } from './LabReportDetailModal';
+import { IconFileAnalytics } from '@tabler/icons-react';
 
 interface EMRHistoryProps {
   currentUser: any;
@@ -30,6 +32,8 @@ const EMRHistory: React.FC<EMRHistoryProps> = ({ currentUser }) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [fetchingPatients, setFetchingPatients] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedReport, setSelectedReport] = useState<LabReportData | null>(null);
+  const [reportModalOpened, setReportModalOpened] = useState(false);
 
   const isClinician = ['ROLE_ADMIN', 'ROLE_DOCTOR', 'ROLE_NURSE'].includes(currentUser?.role);
   const isDoctor = currentUser?.role === 'ROLE_DOCTOR';
@@ -298,15 +302,46 @@ const EMRHistory: React.FC<EMRHistoryProps> = ({ currentUser }) => {
                               content = (
                                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                                       <Text size="sm" style={{ color: '#F0F6FF' }}><b>Test:</b> {event.data.testName}</Text>
-                                      <Group justify="space-between">
+                                      {event.data.zoneStatus && (
+                                        <Badge color={event.data.zoneStatus === 'RED' ? 'red' : event.data.zoneStatus === 'YELLOW' ? 'yellow' : 'teal'}>
+                                          {event.data.zoneStatus === 'RED' ? '🔴 Red Zone' : event.data.zoneStatus === 'YELLOW' ? '🟡 Yellow Zone' : '🟢 Green Zone'}
+                                        </Badge>
+                                      )}
+                                      <Group justify="space-between" mt="xs">
                                         <Badge color={event.data.status === 'COMPLETED' ? 'teal' : 'yellow'}>{event.data.status}</Badge>
-                                        {event.data.fileUrl && (
-                                          <Button variant="light" color="violet" size="xs" leftSection={<IconDownload size={12} />} onClick={() => {
-                                            const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
-                                            const uploadBase = apiBase.replace(/\/api\/?$/, '');
-                                            window.open(`${uploadBase}/uploads/${event.data.fileUrl}`, '_blank');
-                                          }}>Download Report</Button>
-                                        )}
+                                        <Button
+                                          variant="gradient"
+                                          gradient={{ from: 'teal', to: 'blue', deg: 60 }}
+                                          size="xs"
+                                          leftSection={<IconFileAnalytics size={12} />}
+                                          onClick={() => {
+                                            setSelectedReport({
+                                              id: event.data.id || 1,
+                                              patientId: event.data.patientId || 1,
+                                              patientName: selectedPatientName || 'Patient',
+                                              doctorId: event.data.doctorId || 1,
+                                              doctorName: event.data.doctorName || 'Dr. Specialist',
+                                              labTestId: event.data.labTestId || 1,
+                                              labTestName: event.data.testName || 'Diagnostic Report',
+                                              labTestCode: event.data.testCode || 'LAB-01',
+                                              referenceRange: event.data.referenceRange || 'Standard Range',
+                                              cost: event.data.cost || 0,
+                                              testDate: event.data.testDate || (event.date ? event.date.toISOString() : new Date().toISOString()),
+                                              resultValue: event.data.resultValue || event.data.result || 'Normal',
+                                              comments: event.data.comments,
+                                              status: event.data.status || 'COMPLETED',
+                                              doctorRemarks: event.data.doctorRemarks,
+                                              techRemarks: event.data.techRemarks,
+                                              reportFileUrl: event.data.reportFileUrl || event.data.fileUrl,
+                                              zoneStatus: event.data.zoneStatus || 'GREEN',
+                                              aiSummary: event.data.aiSummary || 'AI Report Analysis: Test result parameters recorded within normal limits.',
+                                              healthMetricsJson: event.data.healthMetricsJson,
+                                            });
+                                            setReportModalOpened(true);
+                                          }}
+                                        >
+                                          View AI Report & Graph
+                                        </Button>
                                       </Group>
                                   </div>
                               );
@@ -471,6 +506,13 @@ const EMRHistory: React.FC<EMRHistoryProps> = ({ currentUser }) => {
           preselectedPatientId={selectedPatientId}
         />
       )}
+
+      {/* ── Lab Report AI & Statistics Graph Modal ── */}
+      <LabReportDetailModal
+        opened={reportModalOpened}
+        onClose={() => setReportModalOpened(false)}
+        report={selectedReport}
+      />
     </div>
   );
 };

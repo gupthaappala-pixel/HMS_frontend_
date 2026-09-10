@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { createTheme, MantineProvider } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
+import { ThemeProvider, useThemeMode } from './theme';
 import Login from './features/authentication/pages/Login';
 import Register from './features/authentication/pages/Register';
 import ForgotPassword from './features/authentication/pages/ForgotPassword';
@@ -20,17 +22,12 @@ import { BillingView } from './features/billing/pages/BillingView';
 
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
-import { Notifications } from '@mantine/notifications';
 
-const theme = createTheme({
-  fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-  primaryColor: 'blue',
-  defaultRadius: 'md',
-});
+const AppContent: React.FC = () => {
+  const { mantineTheme } = useThemeMode();
 
-function App() {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={mantineTheme}>
       <Notifications position="top-right" zIndex={1000} />
       <Router>
         <Routes>
@@ -72,6 +69,14 @@ function App() {
         </Routes>
       </Router>
     </MantineProvider>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
