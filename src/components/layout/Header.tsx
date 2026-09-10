@@ -11,7 +11,6 @@ import {
   IconBell,
   IconMenu2,
   IconLogout,
-  IconUser,
 } from '@tabler/icons-react';
 
 interface HeaderProps {

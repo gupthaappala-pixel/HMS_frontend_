@@ -10,7 +10,6 @@ import {
   IconFileAnalytics,
   IconSettings,
   IconPrescription,
-  IconUserShield,
 } from '@tabler/icons-react';
 
 export interface NavItemConfig {

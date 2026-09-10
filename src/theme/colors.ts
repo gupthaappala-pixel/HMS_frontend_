@@ -1,4 +1,52 @@
-export const lightColors = {
+export interface ColorTokens {
+  primary: string;
+  primaryHover: string;
+  primaryLight: string;
+
+  secondary: string;
+  secondaryHover: string;
+  secondaryLight: string;
+
+  background: string;
+  surface: string;
+  surfaceHover: string;
+
+  text: {
+    primary: string;
+    secondary: string;
+    muted: string;
+    inverse: string;
+  };
+
+  border: string;
+  divider: string;
+
+  status: {
+    success: string;
+    successLight: string;
+    warning: string;
+    warningLight: string;
+    error: string;
+    errorLight: string;
+    info: string;
+    infoLight: string;
+  };
+
+  sidebar: {
+    background: string;
+    border: string;
+    active: string;
+    text: string;
+    activeText: string;
+  };
+
+  header: {
+    background: string;
+    border: string;
+  };
+}
+
+export const lightColors: ColorTokens = {
   primary: '#2563EB',
   primaryHover: '#1D4ED8',
   primaryLight: '#EFF6FF',
@@ -44,9 +92,9 @@ export const lightColors = {
     background: '#FFFFFF',
     border: '#E2E8F0',
   },
-} as const;
+};
 
-export const darkColors = {
+export const darkColors: ColorTokens = {
   primary: '#60A5FA',
   primaryHover: '#93C5FD',
   primaryLight: '#1E3A5F',
@@ -92,6 +140,4 @@ export const darkColors = {
     background: '#111827',
     border: '#1E293B',
   },
-} as const;
-
-export type ColorTokens = typeof lightColors;
+};
