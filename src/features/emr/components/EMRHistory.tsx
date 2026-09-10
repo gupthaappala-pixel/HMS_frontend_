@@ -301,7 +301,11 @@ const EMRHistory: React.FC<EMRHistoryProps> = ({ currentUser }) => {
                                       <Group justify="space-between">
                                         <Badge color={event.data.status === 'COMPLETED' ? 'teal' : 'yellow'}>{event.data.status}</Badge>
                                         {event.data.fileUrl && (
-                                            <Button variant="light" color="violet" size="xs" leftSection={<IconDownload size={12} />} onClick={() => window.open(`http://localhost:8080/uploads/${event.data.fileUrl}`, '_blank')}>Download Report</Button>
+                                          <Button variant="light" color="violet" size="xs" leftSection={<IconDownload size={12} />} onClick={() => {
+                                            const apiBase = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
+                                            const uploadBase = apiBase.replace(/\/api\/?$/, '');
+                                            window.open(`${uploadBase}/uploads/${event.data.fileUrl}`, '_blank');
+                                          }}>Download Report</Button>
                                         )}
                                       </Group>
                                   </div>
